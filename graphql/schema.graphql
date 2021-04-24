@@ -6,7 +6,7 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 
 # データ取得の定義
 type Query {
-    users: [User!]! @paginate(defaultCount: 8, page: 4) @orderBy(column: "age", direction: "DESC")  # 複数ユーザーを取得する（ページネーションあり）
+    users: [User!]! @paginate(defaultCount: 8, maxCount: 10) @orderBy(column: "age", direction: "DESC")  # 複数ユーザーを取得する（ページネーションあり）
     user(id: ID @eq): User @find                 # 単一ユーザーを取得する
     posts: [Post!]! @paginate
     post(id: Int! @eq): Post @find
@@ -34,6 +34,7 @@ type User {
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
+    posts: [Post!] @hasMany
 }
 
 type Post {
