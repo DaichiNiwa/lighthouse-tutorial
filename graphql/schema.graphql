@@ -6,16 +6,31 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 
 # データ取得の定義
 type Query {
-    users: [User!]! @paginate(defaultCount: 10)  # 複数ユーザーを取得する（ページネーションあり）
+    users: [User!]! @paginate(defaultCount: 8, page: 4) @orderBy(column: "age", direction: "DESC")  # 複数ユーザーを取得する（ページネーションあり）
     user(id: ID @eq): User @find                 # 単一ユーザーを取得する
     posts: [Post!]! @paginate
     post(id: Int! @eq): Post @find
+}
+
+# 作成・更新
+type Mutation {
+    createUser(
+        name: String!
+        email: String! @rules(apply: ["email"]) # バリデーション（Emailの形式であること）
+        password: String!
+    ): User! @create
+
+    updateUser(
+        id: ID!
+        name: String
+    ): User @update
 }
 
 # ユーザーのスキーマ定義
 type User {
     id: ID!
     name: String!
+    age: Int!
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
@@ -33,18 +48,4 @@ type Comment {
     id: ID!
     reply: String!
     post: Post! @belongsTo
-}
-
-# 作成・更新
-type Mutation {
-  createUser(
-    name: String!
-    email: String! @rules(apply: ["email"]) # バリデーション（Emailの形式であること）
-    password: String!
-  ): User! @create
-
-  updateUser(
-      id: ID!
-      name: String
-    ): User @update
 }
