@@ -17,7 +17,7 @@ class CommentSeeder extends Seeder
     {
         Comment::truncate();
         foreach (Post::all() as $post) {
-            Comment::factory()->create(['post_id' => $post->id]);
+            Comment::factory()->for($post)->count(5)->create();
         }
     }
 }
