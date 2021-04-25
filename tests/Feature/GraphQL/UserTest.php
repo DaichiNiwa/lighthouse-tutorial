@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\GraphQL;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Nuwave\Lighthouse\Testing\UsesTestSchema;
+use Nuwave\Lighthouse\Exceptions\RendersErrorsExtensions;
 
 
 class UserTest extends TestCase
