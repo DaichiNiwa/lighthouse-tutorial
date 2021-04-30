@@ -7,10 +7,10 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 # データ取得の定義
-type Query {
-    users: [User!]! @paginate(defaultCount: 8, maxCount: 100) @orderBy(column: "age", direction: "DESC")  # 複数ユーザーを取得する（ページネーションあり）
+type Query @guard {
+    users: [User!]! @paginate(defaultCount: 8, maxCount: 100) @orderBy(column: "age", direction: "DESC")
     teenagers: [User!]! @field(resolver: "App\\GraphQL\\Queries\\TeenagerResolver")
-    user(id: ID @eq): User @find# 単一ユーザーを取得する
+    user(id: ID @eq): User @find
     posts: [Post!]! @paginate
     post(id: Int! @eq): Post @find
 }
@@ -28,7 +28,6 @@ type Mutation {
         name: String
     ): User @update
 }
-
 
 type Post {
     id: ID!
