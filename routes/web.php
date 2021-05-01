@@ -22,6 +22,10 @@ Route::middleware('auth:web')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:web')->post('/user', function (Request $request) {
+    return $request->user()->name;
+});
+
 Route::get('/hoge', function ( ) {
     return 'hoge';
 });
