@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware('auth:web')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::get('/hoge', function ( ) {
+    return 'hoge';
+});
