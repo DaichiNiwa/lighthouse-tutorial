@@ -11,6 +11,7 @@ type Query @guard  {
     users: [User!]! @paginate(defaultCount: 8, maxCount: 100) @orderBy(column: "age", direction: "DESC") # 複数ユーザーを取得する（ページネーションあり）
     teenagers: [User!]! @field(resolver: "App\\GraphQL\\Queries\\TeenagerResolver")
     user(id: ID @eq): User @find # 単一ユーザーを取得する
+    me: User @auth
     posts: [Post!]! @paginate
     post(id: Int! @eq): Post @find
 }
