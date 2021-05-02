@@ -34,7 +34,7 @@ return [
             // middleware, this delegates auth and permission checks to the field level.
             \Nuwave\Lighthouse\Support\Http\Middleware\AttemptAuthentication::class,
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'web',
+            'web', // ここはweb以外の指定（'auth:sanctum'とか）にするとうまく行かない
 
             // Logs every incoming GraphQL query.
             // \Nuwave\Lighthouse\Support\Http\Middleware\LogGraphQLQueries::class,
@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'guard' => 'web',
+    'guard' => 'sanctum', // ここはwebとsanctumどちらでもうまく行く。違いが分かっていない
 
     /*
     |--------------------------------------------------------------------------
