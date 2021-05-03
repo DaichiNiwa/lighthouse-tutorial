@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'author_id');
     }
 
+    public function notes(): HasMany
+    {
+        return $this->hasMany(Note::class);
+    }
+
     public function isAdult(): bool
     {
         return $this->age >= 20;
