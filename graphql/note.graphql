@@ -1,0 +1,7 @@
+type Note {
+    id: ID!
+    user: User! @belongsTo
+    body: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
