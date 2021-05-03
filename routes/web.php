@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +14,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth:sanctum')->post('/user-name', function (Request $request) {
+    $user = Auth::user();
+    $user->name = $request->name;
+    $user->save();
+    return $user->fresh()->name;
+});
+
+Route::get('/guest', function ( ) {
+    return 'Hi, guest!';
 });
