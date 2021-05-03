@@ -1,4 +1,6 @@
 #import user.graphql
+#import post.graphql
+#import comment.graphql
 #import note.graphql
 
 "A date string with format `Y-m-d`, e.g. `2011-05-23`."
@@ -8,12 +10,15 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
+    me: User @auth
+    user(id: ID @eq): User @find
     users: [User!]! @paginate(defaultCount: 8, maxCount: 100) @orderBy(column: "age", direction: "DESC")
     teenagers: [User!]! @field(resolver: "App\\GraphQL\\Queries\\TeenagerResolver")
-    user(id: ID @eq): User @find
-    me: User @auth
+
     posts: [Post!]! @paginate
     post(id: Int! @eq): Post @find
+
+    note(id: ID! @eq): Note @find @can(ability: "view", find: "id")
 }
 
 type Mutation {
