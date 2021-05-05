@@ -12,7 +12,7 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 type Query {
     me: User @auth
     user(id: ID @eq): User @find
-    users: [User!]! @paginate(defaultCount: 8, maxCount: 100) @orderBy(column: "age", direction: "DESC")
+    users: [User!]! @paginate(defaultCount: 15, maxCount: 50) @orderBy(column: "age", direction: "DESC")
     teenagers: [User!]! @field(resolver: "App\\GraphQL\\Queries\\TeenagerResolver")
 
     posts: [Post!]! @paginate
