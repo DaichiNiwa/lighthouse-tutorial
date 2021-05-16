@@ -48,6 +48,13 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'author_id');
     }
 
+    public function postsInDecade(): HasMany
+    {
+        return $this
+            ->hasMany(Post::class, 'author_id')
+            ->where('created_at', '>=', now()->subYear(10));
+    }
+
     public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
