@@ -6,7 +6,10 @@ type User {
     is_adult: Boolean! @method(name: isAdult)
     created_at: DateTime!
     updated_at: DateTime!
+
     posts: [Post!] @hasMany
+    posts_in_decade: [Post!] @hasMany(relation: postsInDecade, type: paginator, defaultCount: 2, maxCount:5)
     posts_in(year: Int!): [Post!] @method(name: postsIn)
+
     notes: [Note!] @hasMany
 }
