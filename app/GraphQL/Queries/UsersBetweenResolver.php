@@ -5,7 +5,7 @@ namespace App\GraphQL\Queries;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
-class UserBetweenResolver
+class UsersBetweenResolver
 {
     /**
      * @param  null  $_
