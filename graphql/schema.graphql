@@ -16,7 +16,7 @@ type Query {
     users: [User!]! @paginate(defaultCount: 15, maxCount: 50) @orderBy(column: "age", direction: "DESC")
     teenagers: [User!] @field(resolver: "TeenagerResolver")
     users_between(min_age: Int = 20, max_age: Int = 60, page: Int): [User!]
-    @paginate(defaultCount: 5, maxCount: 50, builder: "App\\GraphQL\\Queries\\UserBetweenResolver")
+    @paginate(defaultCount: 5, maxCount: 50, builder: "App\\GraphQL\\Queries\\UsersBetweenResolver")
 
     posts: [Post!]! @paginate
     post(id: Int! @eq): Post @find
