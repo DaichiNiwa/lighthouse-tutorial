@@ -4,4 +4,5 @@ type Post {
     content: String!
     author: User! @belongsTo
     comments: [Comment!]! @hasMany
+    created_at: DateTime!
 }
