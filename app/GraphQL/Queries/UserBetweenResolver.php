@@ -13,8 +13,6 @@ class UserBetweenResolver
      */
     public function __invoke($_, array $args): Builder
     {
-        \Log::info($_);
-        \Log::info($args);
         $minAge = $args['min_age'];
         $maxAge = $args['max_age'];
         return User::whereBetween('age', [$minAge, $maxAge])->orderBy('age');
