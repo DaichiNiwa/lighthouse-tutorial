@@ -20,12 +20,11 @@ class UserType
 
     public function lukeyItems(): array
     {
-        $lukeyItems = [];
-
         $allItems = Items::asArray();
         $lukeyItemsCountToday = mt_rand(1, count($allItems));
-
         shuffle($allItems);
+
+        $lukeyItems = [];
         for ($i = 1; $i <= $lukeyItemsCountToday; $i++) {
             $lukeyItems[] = array_pop($allItems);
         }
