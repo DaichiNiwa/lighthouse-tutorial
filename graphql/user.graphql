@@ -2,14 +2,21 @@ type User {
     id: ID!
     name: String!
     age: Int!
+    blood_type: String! @method(name: bloodType)
     email: String!
     is_adult: Boolean! @method(name: isAdult)
     created_at: DateTime!
     updated_at: DateTime!
+    lukey_items_today: [LukeyItem!]!
 
     posts: [Post!] @hasMany
     posts_in_decade: [Post!] @hasMany(relation: postsInDecade, type: paginator, defaultCount: 2, maxCount:5)
     posts_in(year: Int!): [Post!] @method(name: postsIn)
 
     notes: [Note!] @hasMany
+}
+
+type LukeyItem {
+    name: String!
+    description: String!
 }
