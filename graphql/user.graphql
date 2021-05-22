@@ -2,12 +2,14 @@ type User {
     id: ID!
     name: String!
     age: Int!
-    blood_type: String! @method(name: bloodType)
     email: String!
     is_adult: Boolean! @method(name: isAdult)
     created_at: DateTime!
     updated_at: DateTime!
-    lukey_items_today: [LukeyItem!]!
+    birth_year: String! @field(resolver: "App\\GraphQL\\Queries\\UserType@birthYear")
+    blood_type: String! @field(resolver: "App\\GraphQL\\Queries\\UserType@bloodType")
+#    lukey_items_today: [[LukeyItem!]]! @field(resolver: "App\\GraphQL\\Queries\\UserType@lukeyItems")
+    lukey_items_today: [[String!]]! @field(resolver: "App\\GraphQL\\Queries\\UserType@lukeyItems")
 
     posts: [Post!] @hasMany
     posts_in_decade: [Post!] @hasMany(relation: postsInDecade, type: paginator, defaultCount: 2, maxCount:5)

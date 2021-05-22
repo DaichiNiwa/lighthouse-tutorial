@@ -9,7 +9,7 @@ use BenSampo\Enum\Enum;
  * @method static static OptionTwo()
  * @method static static OptionThree()
  */
-final class Item extends Enum
+final class Items extends Enum
 {
     const Cup = [
         "name" => "マグカップ",
