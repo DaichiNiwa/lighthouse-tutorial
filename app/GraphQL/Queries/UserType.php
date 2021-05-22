@@ -18,15 +18,15 @@ class UserType
         return now()->format('Y') - $user->age;
     }
 
-    public function lukeyItems()
+    public function lukeyItems(): array
     {
         $lukeyItems = [];
 
         $allItems = Items::asArray();
-        $items_count_today = mt_rand(1, count($allItems));
+        $lukeyItemsCountToday = mt_rand(1, count($allItems));
 
         shuffle($allItems);
-        for ($i = 1; $i <= $items_count_today; $i++) {
+        for ($i = 1; $i <= $lukeyItemsCountToday; $i++) {
             $lukeyItems[] = array_pop($allItems);
         }
 
