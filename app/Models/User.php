@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\BloodType;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -68,6 +68,11 @@ class User extends Authenticatable
     public function postsIn(int $year): Collection
     {
         return $this->posts()->whereYear('created_at', $year)->get();
+    }
+
+    public function bloodType(): string
+    {
+        return BloodType::fromValue($this->blood_type)->key;
     }
 }
 
