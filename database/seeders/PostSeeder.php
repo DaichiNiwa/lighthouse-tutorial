@@ -17,7 +17,7 @@ class PostSeeder extends Seeder
     {
         Post::truncate();
         foreach (User::all() as $user) {
-            Post::factory()->count(20)->create(['author_id' => $user->id]);
+            Post::factory()->count(10)->create(['author_id' => $user->id]);
         }
     }
 }
