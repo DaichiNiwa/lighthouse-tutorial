@@ -24,13 +24,6 @@ enum Gender {
     FEMALE @enum(value: 1)
 }
 
-enum BloodType {
-    A @enum(value: 0)
-    B @enum(value: 1)
-    O @enum(value: 2)
-    AB @enum(value: 3)
-}
-
 type LukeyItem {
     name: String!
     description: String!
