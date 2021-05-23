@@ -2,6 +2,7 @@ type User {
     id: ID!
     name: String!
     age: Int!
+    gender: Gender!
     email: String!
     masked_email: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@maskedEmail")
     is_adult: Boolean! @method(name: isAdult)
@@ -16,6 +17,11 @@ type User {
     posts_in(year: Int!): [Post!] @method(name: postsIn)
 
     notes: [Note!] @hasMany
+}
+
+enum Gender {
+    MALE @enum(value: 0)
+    FEMALE @enum(value: 1)
 }
 
 type LukeyItem {
