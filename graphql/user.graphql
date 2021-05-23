@@ -2,13 +2,14 @@ type User {
     id: ID!
     name: String!
     age: Int!
+    gender: Gender!
     email: String!
     masked_email: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@maskedEmail")
     is_adult: Boolean! @method(name: isAdult)
     created_at: DateTime!
     updated_at: DateTime!
     birth_year: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@birthYear")
-    blood_type: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@bloodType")
+    blood_type: BloodType!
     lukey_items_today: [LukeyItem!]! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@getLukeyItemsRandomly")
 
     posts: [Post!] @hasMany
@@ -16,6 +17,11 @@ type User {
     posts_in(year: Int!): [Post!] @method(name: postsIn)
 
     notes: [Note!] @hasMany
+}
+
+enum Gender {
+    MALE @enum(value: 0)
+    FEMALE @enum(value: 1)
 }
 
 type LukeyItem {
