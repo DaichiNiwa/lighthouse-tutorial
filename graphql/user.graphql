@@ -7,8 +7,8 @@ type User {
     is_adult: Boolean! @method(name: isAdult)
     created_at: DateTime!
     updated_at: DateTime!
-    birth_year: String! @field(resolver: "App\\GraphQL\\Queries\\UserType@birthYear")
-    blood_type: String! @field(resolver: "App\\GraphQL\\Queries\\UserType@bloodType")
+    birth_year: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@birthYear")
+    blood_type: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@bloodType")
     lukey_items_today: [LukeyItem!]! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@getLukeyItemsRandomly")
 
     posts: [Post!] @hasMany

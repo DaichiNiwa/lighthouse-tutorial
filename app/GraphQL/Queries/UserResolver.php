@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Queries;
 
+use App\Enums\BloodType;
 use App\Enums\Items;
 use App\Models\User;
 use GraphQL\Type\Definition\ResolveInfo;
@@ -12,6 +13,16 @@ class UserResolver
     public function maskedEmail(User $user): string
     {
         return '*****' . substr($user->email, 5);
+    }
+
+    public function bloodType(User $user): string
+    {
+        return BloodType::fromValue($user->blood_type)->key;
+    }
+
+    public function birthYear(User $user): int
+    {
+        return now()->year - $user->age;
     }
 
     public function getLukeyItemsRandomly(): array
