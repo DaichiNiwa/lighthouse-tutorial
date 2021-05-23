@@ -3,12 +3,13 @@ type User {
     name: String!
     age: Int!
     email: String!
+    masked_email: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@maskedEmail")
     is_adult: Boolean! @method(name: isAdult)
     created_at: DateTime!
     updated_at: DateTime!
-    birth_year: String! @field(resolver: "App\\GraphQL\\Queries\\UserType@birthYear")
-    blood_type: String! @field(resolver: "App\\GraphQL\\Queries\\UserType@bloodType")
-    lukey_items_today: [LukeyItem!]! @field(resolver: "App\\GraphQL\\Queries\\UserType@lukeyItems")
+    birth_year: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@birthYear")
+    blood_type: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@bloodType")
+    lukey_items_today: [LukeyItem!]! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@getLukeyItemsRandomly")
 
     posts: [Post!] @hasMany
     posts_in_decade: [Post!] @hasMany(relation: postsInDecade, type: paginator, defaultCount: 2, maxCount:5)
