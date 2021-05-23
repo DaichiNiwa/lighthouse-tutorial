@@ -15,10 +15,10 @@ class UserType
 
     public function birthYear(User $user): int
     {
-        return now()->format('Y') - $user->age;
+        return now()->year - $user->age;
     }
 
-    public function lukeyItems(): array
+    public function getLukeyItemsRandomly(): array
     {
         $allItems = Items::asArray();
         $lukeyItemsCountToday = mt_rand(1, count($allItems));
