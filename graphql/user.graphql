@@ -3,6 +3,7 @@ type User {
     name: String!
     age: Int!
     email: String!
+    masked_email: String! @field(resolver: "App\\GraphQL\\Queries\\UserResolver@maskedEmail")
     is_adult: Boolean! @method(name: isAdult)
     created_at: DateTime!
     updated_at: DateTime!
