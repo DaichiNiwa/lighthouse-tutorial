@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-    use RefreshDatabase;
+//    use RefreshDatabase;
 
     public function testAuth()
     {
