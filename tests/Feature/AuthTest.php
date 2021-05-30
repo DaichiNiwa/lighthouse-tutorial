@@ -15,12 +15,13 @@ class AuthTest extends TestCase
         $user = User::factory()->create();
         $this->assertGuest();
 
-        $this->actingAs($user)->post(route("login"));
+        $this->actingAs($user)->postJson(route("login"));
         $this->assertAuthenticated();
 
         $this->get(route("user"))->assertOk();
 
-        $this->graphQL('{
+        $this->graphQL('
+        {
           user(id: 1) {
             id
             name
