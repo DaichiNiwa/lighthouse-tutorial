@@ -9,14 +9,15 @@ use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-//    use RefreshDatabase;
+    use RefreshDatabase;
 
-    public function testAuthTest()
+    public function testAuth()
     {
         $user = User::factory()->create();
         $this->assertGuest();
 
-        $this->getJson(route("user"))->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->getJson(route("user"))
+            ->assertStatus(Response::HTTP_UNAUTHORIZED);
         $this->graphQL('
         {
           user(id: 1) {
@@ -30,7 +31,8 @@ class AuthTest extends TestCase
         $this->actingAs($user)->postJson(route("login"));
         $this->assertAuthenticated();
 
-        $this->getJson(route("user"))->assertOk();
+        $this->getJson(route("user"))
+            ->assertOk();
         $this->graphQL('
         {
           user(id: 1) {
