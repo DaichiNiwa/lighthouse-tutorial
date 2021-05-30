@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/user', function () {
+    return \Illuminate\Support\Facades\Auth::user()->name;
+})->middleware(['auth'])->name('user');
+
+require __DIR__.'/auth.php';
 
 
 
